@@ -113,6 +113,8 @@ public class Main {
                         //BookStore bookstore = new BookStore();
                         bookstore.displayBooks();
                         bookstore.sellBook("Harry Potter");
+                        bookstore.displayBooks();
+                        break;
                     }
                     continue;
                 default:
@@ -133,6 +135,7 @@ public class Main {
         System.out.println("User registered successfully.");
         return true;
     }
+
     static boolean login() {
         System.out.print("Enter your username: ");
         String username = scanner.next();
