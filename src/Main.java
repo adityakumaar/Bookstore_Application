@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.io.Console;
 
 class User { //test comment by gaurav.
+    //test comment by harsh.
     /**
      * User class that stores the username and password of a user.
      */
