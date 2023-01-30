@@ -75,7 +75,7 @@ class BookStore {
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     /**
-     * HashMap stores all the registered users, where the username is the key and the User object is the value.
+     * HashMap stores all the registered users, where the username is the key and the User object is the value. sample change.
      */
     static HashMap<String, User> users = new HashMap<>();
 
