@@ -79,7 +79,7 @@ public class Main {
      * HashMap stores all the registered users, where the username is the key and the User object is the value. sample change.
      */
     static HashMap<String, User> users = new HashMap<>();
-
+    //test comment by harsh
     public static void main(String[] args) {
         /**
          * a BookStore object is created and some books are added to it.
