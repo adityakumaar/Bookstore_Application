@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.io.Console;
 
 class User { //test comment by gaurav.
+    //test comment by harsh.
     /**
      * User class that stores the username and password of a user.
      */
@@ -71,14 +72,14 @@ class BookStore {
         }
     }
 }
-
+//Harsh 111
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     /**
      * HashMap stores all the registered users, where the username is the key and the User object is the value. sample change.
      */
     static HashMap<String, User> users = new HashMap<>();
-
+    //test comment by harsh
     public static void main(String[] args) {
         /**
          * a BookStore object is created and some books are added to it.
