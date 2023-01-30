@@ -102,9 +102,10 @@ public class Main {
         while(true) {
             System.out.println("1. Register");
             System.out.println("2. Login");
+            System.out.println("3. Quit");
             System.out.println("Enter your choice: ");
             int choice = scanner.nextInt();
-
+            /** nested switch begins here. */
             switch (choice) {
                 case 1:
                     if (register()) continue;
@@ -112,11 +113,49 @@ public class Main {
                     if (login()) {
                         //BookStore bookstore = new BookStore();
                         bookstore.displayBooks();
-                        bookstore.sellBook("Harry Potter");
-                        bookstore.displayBooks();
+                        //bookstore.sellBook("Harry Potter");
+                        //bookstore.displayBooks();
+                        System.out.println("1. Show Profile");
+                        System.out.println("2. Purchase");
+                        System.out.println("3. Logout");
+                        System.out.println("Enter your choice: ");
+                        choice = scanner.nextInt();
+                        /** first nest. */
+                        switch (choice) {
+                            case 1:
+                                //show_profile();
+                                System.out.println("1. Back to catalog");
+                                System.out.println("2. Logout");
+                                System.out.println("Enter your choice: ");
+                                choice = scanner.nextInt();
+                                /** second nest. */
+                                switch (choice) {
+                                    case 1:
+                                        bookstore.displayBooks();
+                                        break;
+                                    case 2:
+                                        //signout();
+                                        //break;
+                                    default:
+                                        System.out.println("Invalid choice.");
+                                        break;
+                                }
+                                //break;
+                            case 2:
+                                //purchase();
+                                //break;
+                            case 3:
+                                //signout();
+                                //break;
+                            default:
+                                System.out.println("Invalid choice.");
+                                break;
+                        }
                         break;
                     }
                     continue;
+                case 3:
+                    break;
                 default:
                     System.out.println("Invalid choice.");
                         break;
@@ -124,6 +163,9 @@ public class Main {
         }
     }
 
+    /**
+     * method for user registration
+     */
     static boolean register() {
         System.out.print("Enter your username: ");
         String username = scanner.next();
@@ -136,6 +178,9 @@ public class Main {
         return true;
     }
 
+    /**
+     * method for user login
+     */
     static boolean login() {
         System.out.print("Enter your username: ");
         String username = scanner.next();
