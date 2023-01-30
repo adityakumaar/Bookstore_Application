@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.io.Console;
 
-class User {
+class User { //test comment by gaurav.
     /**
      * User class that stores the username and password of a user.
      */
