@@ -1,78 +1,14 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.HashMap;
-import java.io.Console;
+import BookPack.Book;
+import BookPack.BookStore;
+import BookPack.User;
 
-class User { //test comment by gaurav.
-    //test comment by harsh.
-    /**
-     * User class that stores the username and password of a user.
-     */
-    private String username;
-    private String password;
-    User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-    public String getUsername() {
-        return username;
-    }
-    public String getPassword() {
-        return password;
-    }
-}
-class Book {
-    /**
-     * Book class stores information about a book, such as its title, author, price, and quantity.
-     */
-    String title;
-    String author;
-    double price;
-    int quantity;
-    Book(String title, String author, double price, int quantity) {
-        this.title = title;
-        this.author = author;
-        this.price = price;
-        this.quantity = quantity;
-    }
-    public String toString() {
-        return "Title: " + title + "\nAuthor: " + author + "\nPrice: " + price + "\nQuantity: " + quantity;
-    }
-}
-class BookStore {
-    /**
-     * The BookStore class is used to manage a list of books, which is implemented using an ArrayList.
-     * The class has methods to add books to the list, sell a book (decrementing its quantity), and display all the books in the list.
-     */
-    ArrayList<Book> books;
-    BookStore() {
-        books = new ArrayList<Book>();
-    }
-    void addBook(Book book) {
-        books.add(book);
-    }
-    void sellBook(String title) {
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).title.equals(title)) {
-                if (books.get(i).quantity > 0) {
-                    books.get(i).quantity--;
-                    System.out.println("Book sold!");
-                    return;
-                } else {
-                    System.out.println("Book out of stock!");
-                    return;
-                }
-            }
-        }
-        System.out.println("Book not found!");
-    }
-    void displayBooks() {
-        for (int i = 0; i < books.size(); i++) {
-            System.out.println(books.get(i));
-        }
-    }
-}
-//Harsh 222
+/**
+ * Created a seprate package for classes Book,Bookstore and User and imported the package in main file
+ * Package name bookpack
+ */
+
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     /**
@@ -86,9 +22,9 @@ public class Main {
          * Then the books are displayed, a book is sold, and the books are displayed again to show the updated quantity.
          */
         BookStore bookstore = new BookStore();
-        bookstore.addBook(new Book("Harry Potter", "J.K. Rowling", 15.99, 10));
-        bookstore.addBook(new Book("The Lord of the Rings", "J.R.R. Tolkien", 20.99, 5));
-        bookstore.addBook(new Book("The Hobbit", "J.R.R. Tolkien", 12.99, 8));
+        bookstore.addBook(new Book(1,"Harry Potter", 20, 3));
+        bookstore.addBook(new Book(2,"The Lord of the Rings", 30, 2));
+        bookstore.addBook(new Book(3,"The Hobbit", 40, 3));
 
         //bookstore.displayBooks();
         //bookstore.sellBook("Harry Potter");
@@ -100,16 +36,20 @@ public class Main {
          * The User object is then added to the HashMap of users. If the user selects "login",
          * the program calls the login method, which prompts the user for their username and password.
          */
-        while(true) {
+        boolean f1 = true;
+        while(f1) {
             System.out.println("1. Register");
             System.out.println("2. Login");
-            System.out.println("3. Quit");
+            System.out.println("3. Forgot password");
+            System.out.println("4. Exit");
             System.out.println("Enter your choice: ");
             int choice = scanner.nextInt();
             /** nested switch begins here. */
+
             switch (choice) {
                 case 1:
-                    if (register()) continue;
+                    if (register())
+                        continue;
                 case 2:
                     if (login()) {
                         //BookStore bookstore = new BookStore();
@@ -144,6 +84,8 @@ public class Main {
                                 //break;
                             case 2:
                                 //purchase();
+                                bookstore.sellBook(1);
+                                bookstore.displayBooks();
                                 //break;
                             case 3:
                                 //signout();
@@ -156,10 +98,15 @@ public class Main {
                     }
                     continue;
                 case 3:
+                    //resetPassword();
                     break;
+                case 4:
+                    f1 = false;
+                    break;
+
                 default:
                     System.out.println("Invalid choice.");
-                        break;
+                    break;
             }
         }
     }
