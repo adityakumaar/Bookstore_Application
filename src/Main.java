@@ -106,7 +106,8 @@ public class Main {
                                     else {
                                         System.out.println("Book out of stock!");
                                     }
-                                    bookstore.displayBooks();
+                                    //bookstore.displayBooks();
+                                    break;
                                 case 3:
                                     f2 = false;
                                     break;
