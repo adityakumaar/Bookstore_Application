@@ -9,6 +9,7 @@ import BookPack.User;
  * Package name bookpack
  */
 
+
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     /**
@@ -49,54 +50,63 @@ public class Main {
             switch (choice) {
                 case 1:
                     if (register())
-                        continue;
-                case 2:
-                    if (login()) {
-                        //BookStore bookstore = new BookStore();
-                        bookstore.displayBooks();
-                        //bookstore.sellBook("Harry Potter");
-                        //bookstore.displayBooks();
-                        System.out.println("1. Show Profile");
-                        System.out.println("2. Purchase");
-                        System.out.println("3. Logout");
-                        System.out.println("Enter your choice: ");
-                        choice = scanner.nextInt();
-                        /** first nest. */
-                        switch (choice) {
-                            case 1:
-                                //show_profile();
-                                System.out.println("1. Back to catalog");
-                                System.out.println("2. Logout");
-                                System.out.println("Enter your choice: ");
-                                choice = scanner.nextInt();
-                                /** second nest. */
-                                switch (choice) {
-                                    case 1:
-                                        bookstore.displayBooks();
-                                        break;
-                                    case 2:
-                                        //signout();
-                                        //break;
-                                    default:
-                                        System.out.println("Invalid choice.");
-                                        break;
-                                }
-                                //break;
-                            case 2:
-                                //purchase();
-                                bookstore.sellBook(1);
-                                bookstore.displayBooks();
-                                //break;
-                            case 3:
-                                //signout();
-                                //break;
-                            default:
-                                System.out.println("Invalid choice.");
-                                break;
-                        }
                         break;
+                case 2:
+                    boolean f2 = true;
+                    while(f2){
+                        if (login()) {
+                            //BookStore bookstore = new BookStore();
+                            bookstore.displayBooks();
+                            //bookstore.sellBook("Harry Potter");
+                            //bookstore.displayBooks();
+                            System.out.println("1. Show Profile");
+                            System.out.println("2. Purchase");
+                            System.out.println("3. Logout");
+                            System.out.println("Enter your choice: ");
+                            choice = scanner.nextInt();
+
+                            switch (choice) {
+                                case 1:
+                                    //show_profile();
+                                    boolean f3 = true;
+                                    while(f3){
+                                        System.out.println("1. Back to catalog");
+                                        System.out.println("2. Logout");
+                                        System.out.println("Enter your choice: ");
+                                        choice = scanner.nextInt();
+
+                                        switch (choice) {
+                                            case 1:
+                                                f2 = false;
+                                                break;
+                                            case 2:
+                                                f3 = false;
+                                                f2 = false;
+                                                break;
+                                            default:
+                                                System.out.println("Invalid choice.");
+                                                break;
+                                        }
+                                    }
+
+                                    break;
+                                case 2:
+                                    //purchase();
+                                    bookstore.sellBook(1);
+                                    bookstore.displayBooks();
+                                    //break;
+                                case 3:
+                                    //signout();
+                                    f2 = false;
+                                    break;
+                                default:
+                                    System.out.println("Invalid choice.");
+                                    break;
+                            }
+                        }
                     }
-                    continue;
+
+                    break;
                 case 3:
                     //resetPassword();
                     break;
