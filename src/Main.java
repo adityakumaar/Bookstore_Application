@@ -26,6 +26,7 @@ public class Main {
      * HashMap stores all the registered users, where the username is the key and the User object is the value.
      */
     static HashMap<String, User> users = new HashMap<>();
+
     public static void main(String[] args) {
         /**
          * a BookStore object is created and some books are added to it.
@@ -64,10 +65,7 @@ public class Main {
                     if (login()) {
                         boolean f2 = true;
                         while(f2){
-                            //BookStore bookstore = new BookStore();
                             bookstore.displayBooks();
-                            //bookstore.sellBook("Harry Potter");
-                            //bookstore.displayBooks();
                             System.out.println("1. Show Profile");
                             System.out.println("2. Purchase");
                             System.out.println("3. Logout");
@@ -106,7 +104,6 @@ public class Main {
                                     else {
                                         System.out.println("Book out of stock!");
                                     }
-                                    //bookstore.displayBooks();
                                     break;
                                 case 3:
                                     f2 = false;
