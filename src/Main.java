@@ -1,3 +1,13 @@
+/**
+ * Bookstore Application Java Project
+ * Developed by:
+ *              Team Charlie
+ *              Aditya Kumar (202212046)
+ *              Harsh Mangroliya (202212084)
+ *              Gaurav Bardia (202212069)
+ *              Denish Vaghasiya (202212028)
+ */
+
 import java.util.Scanner;
 import java.util.HashMap;
 import BookPack.Book;
@@ -5,18 +15,17 @@ import BookPack.BookStore;
 import BookPack.User;
 
 /**
- * Created a seprate package for classes Book,Bookstore and User and imported the package in main file
- * Package name bookpack
+ * Created a separate package for classes Book, Bookstore, and User and imported the package in Main.java file
+ * Package name: BookPack
  */
 
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     /**
-     * HashMap stores all the registered users, where the username is the key and the User object is the value. sample change.
+     * HashMap stores all the registered users, where the username is the key and the User object is the value.
      */
     static HashMap<String, User> users = new HashMap<>();
-    //test comment by harsh
     public static void main(String[] args) {
         /**
          * a BookStore object is created and some books are added to it.
@@ -24,8 +33,8 @@ public class Main {
          */
         BookStore bookstore = new BookStore();
         bookstore.addBook(new Book(1,"Harry Potter", 20, 3));
-        bookstore.addBook(new Book(2,"The Lord of the Rings", 30, 2));
-        bookstore.addBook(new Book(3,"The Hobbit", 40, 3));
+        bookstore.addBook(new Book(2,"The Lord of.", 30, 2));
+        bookstore.addBook(new Book(3,"The Hobbit..", 40, 3));
 
         //bookstore.displayBooks();
         //bookstore.sellBook("Harry Potter");
@@ -45,8 +54,8 @@ public class Main {
             System.out.println("4. Exit");
             System.out.println("Enter your choice: ");
             int choice = scanner.nextInt();
-            /** nested switch begins here. */
 
+            /** nested switch begins here. */
             switch (choice) {
                 case 1:
                     if (register())
@@ -121,9 +130,7 @@ public class Main {
         }
     }
 
-    /**
-     * method for user registration
-     */
+    /*** method for user registration */
     static boolean register() {
         System.out.print("Enter your username: ");
         String username = scanner.next();
@@ -136,9 +143,7 @@ public class Main {
         return true;
     }
 
-    /**
-     * method for user login
-     */
+    /*** method for user login */
     static boolean login() {
         System.out.print("Enter your username: ");
         String username = scanner.next();

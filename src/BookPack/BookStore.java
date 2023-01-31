@@ -30,6 +30,7 @@ public class BookStore {
         System.out.println("Book not found!");
     }
     public void displayBooks() {
+        System.out.println("Book ID         Title           Price           Quantity");
         for (int i = 0; i < books.size(); i++) {
             System.out.println(books.get(i));
         }
