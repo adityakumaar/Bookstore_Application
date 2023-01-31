@@ -22,12 +22,11 @@ public class BookStore {
                     //System.out.println("Book sold!");
                     return true;
                 } else {
-                    //System.out.println("Book out of stock!");
+                   // System.out.println("Book out of stock!");
                     return false;
                 }
             }
         }
-        //System.out.println("Book not found!");
         return false;
     }
     public void displayBooks() {
