@@ -193,6 +193,7 @@ public class Main {
             System.out.println("Password reset successfully.");
             return true;
         }
+        System.out.println("No such user exists.");
         return false;
     }
 }

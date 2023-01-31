@@ -1,7 +1,7 @@
 package BookPack;
 
 import java.util.ArrayList;
-//sample change
+
 public class BookStore {
     /**
      * The BookStore class is used to manage a list of books, which is implemented using an ArrayList.
