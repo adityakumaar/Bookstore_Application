@@ -52,9 +52,11 @@ public class Main {
                     if (register())
                         break;
                 case 2:
-                    boolean f2 = true;
-                    while(f2){
-                        if (login()) {
+                    if (login()) {
+
+                        boolean f2 = true;
+                        while(f2){
+
                             //BookStore bookstore = new BookStore();
                             bookstore.displayBooks();
                             //bookstore.sellBook("Harry Potter");
@@ -77,7 +79,7 @@ public class Main {
 
                                         switch (choice) {
                                             case 1:
-                                                f2 = false;
+                                                f3 = false;
                                                 break;
                                             case 2:
                                                 f3 = false;
