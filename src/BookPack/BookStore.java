@@ -14,20 +14,20 @@ public class BookStore {
     public void addBook(Book book) {
         books.add(book);
     }
-    public void sellBook(int bid) {
+
+    /*** The sellBook returns true if the book is in inventory otherwise it returns false. */
+    public boolean sellBook(int bid) {
         for (int i = 0; i < books.size(); i++) {
             if (books.get(i).bid == bid) {
                 if (books.get(i).quantity > 0) {
                     books.get(i).quantity--;
-                    System.out.println("Book sold!");
-                    return;
+                    return true;
                 } else {
-                    System.out.println("Book out of stock!");
-                    return;
+                    return false;
                 }
             }
         }
-        System.out.println("Book not found!");
+        return false;
     }
     public void displayBooks() {
         System.out.println("Book ID         Title           Price           Quantity");

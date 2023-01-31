@@ -62,10 +62,8 @@ public class Main {
                         break;
                 case 2:
                     if (login()) {
-
                         boolean f2 = true;
                         while(f2){
-
                             //BookStore bookstore = new BookStore();
                             bookstore.displayBooks();
                             //bookstore.sellBook("Harry Potter");
@@ -99,15 +97,17 @@ public class Main {
                                                 break;
                                         }
                                     }
-
                                     break;
                                 case 2:
-                                    //purchase();
-                                    bookstore.sellBook(1);
                                     bookstore.displayBooks();
-                                    //break;
+                                    if(purchase(bookstore)){
+                                        System.out.println("Book sold!");
+                                    }
+                                    else {
+                                        System.out.println("Book out of stock!");
+                                    }
+                                    bookstore.displayBooks();
                                 case 3:
-                                    //signout();
                                     f2 = false;
                                     break;
                                 default:
@@ -116,7 +116,6 @@ public class Main {
                             }
                         }
                     }
-
                     break;
                 case 3:
                     //resetPassword();
@@ -124,7 +123,6 @@ public class Main {
                 case 4:
                     f1 = false;
                     break;
-
                 default:
                     System.out.println("Invalid choice.");
                     break;
@@ -160,5 +158,17 @@ public class Main {
             System.out.println("Login failed. Invalid username or password.");
         }
         return false;
+    }
+
+    /*** method for purchasing books */
+    static boolean purchase(BookStore b) {
+        System.out.println("Enter the Book ID for purchasing: ");
+        int bid = scanner.nextInt();
+        if(b.sellBook(bid)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
