@@ -14,12 +14,13 @@ public class BookStore {
     public void addBook(Book book) {
         books.add(book);
     }
+
     public void sellBook(int bid) {
         for (int i = 0; i < books.size(); i++) {
             if (books.get(i).bid == bid) {
                 if (books.get(i).quantity > 0) {
                     books.get(i).quantity--;
-                    System.out.println("Book sold!");
+                    System.out.println("Book purchased !");
                     return;
                 } else {
                     System.out.println("Book out of stock!");
