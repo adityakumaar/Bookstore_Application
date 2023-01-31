@@ -19,7 +19,6 @@ import BookPack.User;
  * Package name: BookPack
  */
 
-
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     /**
@@ -32,6 +31,7 @@ public class Main {
          * a BookStore object is created and some books are added to it.
          * Then the books are displayed, a book is sold, and the books are displayed again to show the updated quantity.
          */
+
         BookStore bookstore = new BookStore();
         bookstore.addBook(new Book(1,"Harry Potter", 20, 3));
         bookstore.addBook(new Book(2,"The Lord of.", 30, 2));
@@ -40,6 +40,7 @@ public class Main {
         //bookstore.displayBooks();
         //bookstore.sellBook("Harry Potter");
         //bookstore.displayBooks();
+
         /**
          * A menu is displayed to the user asking whether they want to register or login.
          * If the user selects "register", the program calls the register method,
@@ -61,6 +62,8 @@ public class Main {
                 case 1:
                     if (register())
                         break;
+                    else
+                        continue;
                 case 2:
                     if (login()) {
                         boolean f2 = true;
@@ -116,7 +119,7 @@ public class Main {
                     }
                     break;
                 case 3:
-                    //resetPassword();
+                    resetPassword();
                     break;
                 case 4:
                     f1 = false;
@@ -135,7 +138,13 @@ public class Main {
         System.out.print("Enter your password: ");
         String password = scanner.next();
 
-        User user = new User(username, password);
+        User user = users.get(username);
+        /*** Same user can not register twice. */
+        if (user != null && user.getUsername().equals(username)) {
+            System.out.println("User already exists.");
+            return false;
+        }
+        user = new User(username, password);
         users.put(username, user);
         System.out.println("User registered successfully.");
         return true;
@@ -168,5 +177,22 @@ public class Main {
         else {
             return false;
         }
+    }
+
+    /*** method for resetting password */
+    static boolean resetPassword() {
+        System.out.print("Enter your username: ");
+        String username = scanner.next();
+        System.out.print("Enter your new password: ");
+        String password = scanner.next();
+        User user = users.get(username);
+        /*** Existing user can reset the password. */
+        if (user != null && user.getUsername().equals(username)) {
+            user = new User(username, password);
+            users.put(username, user);
+            System.out.println("Password reset successfully.");
+            return true;
+        }
+        return false;
     }
 }

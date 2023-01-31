@@ -1,9 +1,12 @@
 package BookPack;
 
+import java.util.HashMap;
+
 public class User {
     /**
      * User class that stores the username and password of a user.
      */
+
     private String username;
     private String password;
 
@@ -12,7 +15,7 @@ public class User {
         this.password = password;
     }
 
-    public String getUsername() {
+   public String getUsername() {
         return username;
     }
     public String getPassword() {
