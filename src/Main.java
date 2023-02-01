@@ -196,18 +196,12 @@ public class Main {
         String fullname = scanner.next();
         System.out.print("Enter your username: ");
         String username = scanner.next();
-//        System.out.print("Enter your new password: ");
-//        String password = scanner.next();
         User user = users.get(username);
         /*** Existing user can reset the password. */
         if (user != null && user.getUsername().equals(username) && user.getFullname().equals(fullname)) {
             System.out.print("Enter your new password: ");
             String password = scanner.next();
             user.setPassword(password);
-//            fullname = user.getFullname();
-//            int balance = user.getBalance();
-//            user = new User(username, password, fullname, balance);
-//            users.put(username, user);
             System.out.println("Password reset successfully.");
             return true;
         }
