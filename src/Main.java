@@ -120,12 +120,7 @@ public class Main {
                                     break;
                                 case 2:
                                     bookstore.displayBooks();
-                                    if(purchase(bookstore)){
-                                        System.out.println("Book purchased successfully!");
-                                    }
-                                    else {
-                                        System.out.println("Book out of stock!");
-                                    }
+                                    purchase(bookstore);
                                     break;
                                 case 3:
                                     f2 = false;
@@ -177,7 +172,7 @@ public class Main {
             System.out.println("\nUser already exists.");
             return false;
         }
-        user = new User(username, password, fullname, 1000);
+        user = new User(username, password, fullname, 50);
         users.put(username, user);
         System.out.println("\nUser registered successfully.");
         return true;
@@ -204,15 +199,19 @@ public class Main {
     }
 
     /*** method for purchasing books */
-    static boolean purchase(BookStore b) {
+    static void purchase(BookStore b) {
         System.out.println("Enter the Book ID for purchasing: ");
+
         int bid = scanner.nextInt();
         int result = b.sellBook(bid, active);
-        if(true) {
-            return true;
+        if(result == 1) {
+            System.out.println("Book Purchased successfully");
+        }
+        else if (result == -1) {
+            System.out.println("Your wallet balance is not sufficient");
         }
         else {
-            return false;
+            System.out.println("Book !!Out of stock");
         }
     }
 
