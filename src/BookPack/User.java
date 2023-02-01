@@ -37,4 +37,9 @@ public class User {
     public void setPassword(String newPass) {
         this.password = newPass;
     }
+
+    public void updateBalance(int amt){
+        this.balance -= amt;
+    }
+
 }

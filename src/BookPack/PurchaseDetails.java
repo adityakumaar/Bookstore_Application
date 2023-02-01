@@ -12,7 +12,9 @@ public class PurchaseDetails {
         this.title = title;
         this.price = price;
     }
-
+    public String returnUsername(){
+        return this.username;
+    }
     public void printRecord(){
         System.out.println(this.username+" "+this.bid+" "+this.title+" "+this.price);
     }

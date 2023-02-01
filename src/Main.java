@@ -16,6 +16,7 @@ import java.util.Map.Entry;
 
 import BookPack.Book;
 import BookPack.BookStore;
+import BookPack.PurchaseDetails;
 import BookPack.User;
 
 /**
@@ -54,7 +55,7 @@ public class Main {
          */
         boolean f1 = true;
         while(f1) {
-            System.out.println("1. Register");
+            System.out.println("\n1. Register");
             System.out.println("2. Login");
             System.out.println("3. Forgot password");
             System.out.println("4. Exit");
@@ -72,6 +73,7 @@ public class Main {
                     if (login()) {
                         boolean f2 = true;
                         while(f2){
+                            System.out.println("\nWelcome, "+active.getFullname());
                             bookstore.displayBooks();
                             System.out.println("1. Show Profile");
                             System.out.println("2. Purchase");
@@ -83,12 +85,25 @@ public class Main {
                                 case 1:
                                     //show_profile();
                                     boolean f3 = true;
+                                    boolean flag = false;
                                     while(f3){
-                                        System.out.println("1. Back to catalog");
-                                        System.out.println("2. Logout");
-                                        System.out.println("Enter your choice: ");
-                                        choice = scanner.nextInt();
+                                        System.out.println("\nPurchase History :");
+                                        for(int i=0;i<bookstore.purchaseDB.size();i++){
+                                            PurchaseDetails tmp =  bookstore.purchaseDB.get(i);
+                                            if(tmp.returnUsername().equals(active.getUsername())){
+                                                tmp.printRecord();
+                                                flag = true;
+                                            }
+                                        }
+                                        System.out.println("\nYour wallet balance : "+active.getBalance());
 
+                                        if(!flag)
+                                            System.out.println("No record found");
+                                        System.out.println("\n1. Back to catalog");
+                                        System.out.println("2. Logout");
+                                        System.out.println("\nEnter your choice: ");
+                                        choice = scanner.nextInt();
+                                        System.out.println("\n");
                                         switch (choice) {
                                             case 1:
                                                 f3 = false;
@@ -106,7 +121,7 @@ public class Main {
                                 case 2:
                                     bookstore.displayBooks();
                                     if(purchase(bookstore)){
-                                        System.out.println("Book sold!");
+                                        System.out.println("Book purchased successfully!");
                                     }
                                     else {
                                         System.out.println("Book out of stock!");
@@ -143,18 +158,28 @@ public class Main {
         String fullname = scanner.next();
         System.out.print("Enter your username: ");
         String username = scanner.next();
-        System.out.print("Enter your password: ");
-        String password = scanner.next();
+        String password=null ,password2 = null;
+        boolean f1 = true;
+        while(f1) {
+            System.out.print("Enter your password: ");
+            password = scanner.next();
+            System.out.print("Re-enter your password: ");
+            password2 = scanner.next();
+            if(password.equals(password2))
+                f1=false;
+            else
+                System.out.println("\nPlease enter same password\n");
 
+        }
         User user = users.get(username);
         /*** Same user can not register twice. */
         if (user != null && user.getUsername().equals(username)) {
-            System.out.println("User already exists.");
+            System.out.println("\nUser already exists.");
             return false;
         }
         user = new User(username, password, fullname, 1000);
         users.put(username, user);
-        System.out.println("User registered successfully.");
+        System.out.println("\nUser registered successfully.");
         return true;
     }
 
@@ -167,9 +192,9 @@ public class Main {
 
         User user = users.get(username);
         if (user != null && user.getPassword().equals(password)) {
-            System.out.println("Login successful.");
-            System.out.println(user.getFullname());
-            System.out.println(user.getBalance());
+            System.out.println("Login successfully.");
+//            System.out.println(user.getFullname());
+//            System.out.println(user.getBalance());
             active = user;
             return true;
         } else {
@@ -182,7 +207,8 @@ public class Main {
     static boolean purchase(BookStore b) {
         System.out.println("Enter the Book ID for purchasing: ");
         int bid = scanner.nextInt();
-        if(b.sellBook(bid, active.getUsername())) {
+        int result = b.sellBook(bid, active);
+        if(true) {
             return true;
         }
         else {
