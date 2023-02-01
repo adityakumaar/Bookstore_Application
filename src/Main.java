@@ -10,6 +10,10 @@
 
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
 import BookPack.Book;
 import BookPack.BookStore;
 import BookPack.User;
@@ -21,10 +25,10 @@ import BookPack.User;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
-    /**
-     * HashMap stores all the registered users, where the username is the key and the User object is the value.
-     */
+    /*** HashMap stores all the registered users, where the username is the key and the User object is the value. */
     static HashMap<String, User> users = new HashMap<>();
+
+    static User active;
 
     public static void main(String[] args) {
         /**
@@ -34,8 +38,8 @@ public class Main {
 
         BookStore bookstore = new BookStore();
         bookstore.addBook(new Book(1,"Harry Potter", 20, 3));
-        bookstore.addBook(new Book(2,"The Lord of.", 30, 2));
-        bookstore.addBook(new Book(3,"The Hobbit..", 40, 3));
+        bookstore.addBook(new Book(2,"The Lord of ", 30, 2));
+        bookstore.addBook(new Book(3,"The Hobbit  ", 40, 3));
 
         //bookstore.displayBooks();
         //bookstore.sellBook("Harry Potter");
@@ -119,7 +123,9 @@ public class Main {
                     }
                     break;
                 case 3:
+                    printUser();
                     resetPassword();
+                    printUser();
                     break;
                 case 4:
                     f1 = false;
@@ -133,6 +139,8 @@ public class Main {
 
     /*** method for user registration */
     static boolean register() {
+        System.out.print("Enter your full name: ");
+        String fullname = scanner.next();
         System.out.print("Enter your username: ");
         String username = scanner.next();
         System.out.print("Enter your password: ");
@@ -144,7 +152,7 @@ public class Main {
             System.out.println("User already exists.");
             return false;
         }
-        user = new User(username, password);
+        user = new User(username, password, fullname, 1000);
         users.put(username, user);
         System.out.println("User registered successfully.");
         return true;
@@ -160,6 +168,9 @@ public class Main {
         User user = users.get(username);
         if (user != null && user.getPassword().equals(password)) {
             System.out.println("Login successful.");
+            System.out.println(user.getFullname());
+            System.out.println(user.getBalance());
+            active = user;
             return true;
         } else {
             System.out.println("Login failed. Invalid username or password.");
@@ -171,7 +182,7 @@ public class Main {
     static boolean purchase(BookStore b) {
         System.out.println("Enter the Book ID for purchasing: ");
         int bid = scanner.nextInt();
-        if(b.sellBook(bid)) {
+        if(b.sellBook(bid, active.getUsername())) {
             return true;
         }
         else {
@@ -181,19 +192,38 @@ public class Main {
 
     /*** method for resetting password */
     static boolean resetPassword() {
+        System.out.print("Enter your fullname: ");
+        String fullname = scanner.next();
         System.out.print("Enter your username: ");
         String username = scanner.next();
-        System.out.print("Enter your new password: ");
-        String password = scanner.next();
+//        System.out.print("Enter your new password: ");
+//        String password = scanner.next();
         User user = users.get(username);
         /*** Existing user can reset the password. */
-        if (user != null && user.getUsername().equals(username)) {
-            user = new User(username, password);
-            users.put(username, user);
+        if (user != null && user.getUsername().equals(username) && user.getFullname().equals(fullname)) {
+            System.out.print("Enter your new password: ");
+            String password = scanner.next();
+            user.setPassword(password);
+//            fullname = user.getFullname();
+//            int balance = user.getBalance();
+//            user = new User(username, password, fullname, balance);
+//            users.put(username, user);
             System.out.println("Password reset successfully.");
             return true;
         }
         System.out.println("No such user exists.");
         return false;
+    }
+
+    //HashMap iterator for debugging.
+    public static void printUser() {
+        Iterator<Entry<String, User>> new_Iterator = users.entrySet().iterator();
+        while (new_Iterator.hasNext()) {
+            Map.Entry<String, User> new_Map = (Map.Entry<String, User>)
+                    new_Iterator.next();
+            User temp = new_Map.getValue();
+            // Displaying HashMap
+            System.out.println(new_Map.getKey()+"  fn:"+temp.getFullname()+" u:"+temp.getUsername()+" p:"+temp.getPassword()+"\n");
+        }
     }
 }

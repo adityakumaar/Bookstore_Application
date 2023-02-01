@@ -1,6 +1,6 @@
 package BookPack;
 
-public class Book {
+public class Book  {
     /**
      * Book class stores information about a book, such as its title, bid, price, and quantity.
      */
@@ -10,15 +10,15 @@ public class Book {
     public int quantity;
 
     public Book(int bid,String title, double price, int quantity) {
+        //super();
         this.bid = bid;
         this.title = title;
         this.price = price;
         this.quantity = quantity;
     }
-    public String toString() {
 
+    public String toString() {
         //return "Book ID: " + bid + "\nTitle: " + title +  "\nPrice: " + price + "\nQuantity: " + quantity;
         return bid + "               " + title +  "    " + price + "            " + quantity;
     }
-
 }

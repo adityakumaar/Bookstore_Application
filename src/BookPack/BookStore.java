@@ -8,17 +8,27 @@ public class BookStore {
      * The class has methods to add books to the list, sell a book (decrementing its quantity), and display all the books in the list.
      */
     ArrayList<Book> books;
+    ArrayList<PurchaseDetails> purchaseDB;
+
     public BookStore() {
         books = new ArrayList<Book>();
+        purchaseDB = new ArrayList<PurchaseDetails>();
     }
+
     public void addBook(Book book) {
         books.add(book);
     }
-    public boolean sellBook(int bid) {
+
+    public boolean sellBook(int bid, String username) {
         for (int i = 0; i < books.size(); i++) {
             if (books.get(i).bid == bid) {
                 if (books.get(i).quantity > 0) {
                     books.get(i).quantity--;
+                    Book temp = books.get(i);
+                    PurchaseDetails pd = new PurchaseDetails(username,temp.bid,temp.title,temp.price);
+
+                    purchaseDB.add(pd);
+                    DisplayPurchaseRecords();
                     //System.out.println("Book sold!");
                     return true;
                 } else {
@@ -31,8 +41,13 @@ public class BookStore {
     }
     public void displayBooks() {
         System.out.println("Book ID         Title           Price           Quantity");
-        for (int i = 0; i < books.size(); i++) {
+        for (int i = 0; i < books.size(); i++)
             System.out.println(books.get(i));
+    }
+
+    public void DisplayPurchaseRecords(){
+        for(int i=0;i<purchaseDB.size();i++){
+            purchaseDB.get(i).printRecord();
         }
     }
 }
