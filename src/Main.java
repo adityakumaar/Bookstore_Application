@@ -71,10 +71,12 @@ public class Main {
                                     boolean flag = false;
                                     while(f3){
                                         System.out.println("\nPurchase History :");
-                                        System.out.println("Book ID\tBook Name\t\tPrice");
+
                                         for(int i = 0 ; i < bookstore.purchaseDB.size() ; i++){
                                             PurchaseDetails pd =  bookstore.purchaseDB.get(i);
                                             if(pd.returnUsername().equals(UserOperations.active.getUsername())){
+                                                if(!flag)
+                                                    System.out.println("Book ID\tBook Name\t\tPrice");
                                                 pd.printRecord();
                                                 flag = true;
                                             }
