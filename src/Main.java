@@ -18,6 +18,7 @@ import BookPack.Book;
 import BookPack.BookStore;
 import BookPack.PurchaseDetails;
 import BookPack.User;
+import BookPack.UserOperations;
 
 /**
  * Created a separate package for classes Book, Bookstore, and User and imported the package in Main.java file
@@ -25,11 +26,9 @@ import BookPack.User;
  */
 
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
-    /*** HashMap stores all the registered users, where the username is the key and the User object is the value. */
-    static HashMap<String, User> users = new HashMap<>();
 
-    static User active;
+    /*** HashMap stores all the registered users, where the username is the key and the User object is the value. */
+
 
     public static void main(String[] args) {
         /**
@@ -60,26 +59,26 @@ public class Main {
             System.out.println("3. Forgot password");
             System.out.println("4. Exit");
             System.out.println("Enter your choice: ");
-            int choice = scanner.nextInt();
+            int choice = UserOperations.scanner.nextInt();
 
             /** nested switch begins here. */
             switch (choice) {
                 case 1:
-                    if (register())
+                    if (UserOperations.register())
                         break;
                     else
                         continue;
                 case 2:
-                    if (login()) {
+                    if (UserOperations.login()) {
                         boolean f2 = true;
                         while(f2){
-                            System.out.println("\nWelcome, "+active.getFullname());
+                            System.out.println("\nWelcome, "+UserOperations.active.getFullname());
                             bookstore.displayBooks();
                             System.out.println("1. Show Profile");
                             System.out.println("2. Purchase");
                             System.out.println("3. Logout");
                             System.out.println("Enter your choice: ");
-                            choice = scanner.nextInt();
+                            choice = UserOperations.scanner.nextInt();
 
                             switch (choice) {
                                 case 1:
@@ -88,23 +87,23 @@ public class Main {
                                     boolean flag = false;
                                     while(f3){
                                         System.out.println("\nPurchase History :");
-                                        System.out.println("Bid  BookName  Price");
                                         for(int i=0;i<bookstore.purchaseDB.size();i++){
                                             PurchaseDetails tmp =  bookstore.purchaseDB.get(i);
-                                            if(tmp.returnUsername().equals(active.getUsername())){
+                                            if(tmp.returnUsername().equals(UserOperations.active.getUsername())){
                                                 tmp.printRecord();
                                                 flag = true;
                                             }
                                         }
                                         if(!flag)
                                             System.out.println("No record found");
-                                        System.out.println("\nYour wallet balance : "+active.getBalance());
+
+                                        System.out.println("\nYour wallet balance : "+UserOperations.active.getBalance());
 
 
                                         System.out.println("\n1. Back to catalog");
                                         System.out.println("2. Logout");
                                         System.out.println("\nEnter your choice: ");
-                                        choice = scanner.nextInt();
+                                        choice = UserOperations.scanner.nextInt();
                                         System.out.println("\n");
                                         switch (choice) {
                                             case 1:
@@ -122,7 +121,7 @@ public class Main {
                                     break;
                                 case 2:
                                     bookstore.displayBooks();
-                                    purchase(bookstore);
+                                    UserOperations.purchase(bookstore);
                                     break;
                                 case 3:
                                     f2 = false;
@@ -135,9 +134,9 @@ public class Main {
                     }
                     break;
                 case 3:
-                    printUser();
-                    resetPassword();
-                    printUser();
+                    UserOperations.printUser();
+                    UserOperations.resetPassword();
+                    UserOperations.printUser();
                     break;
                 case 4:
                     f1 = false;
@@ -149,106 +148,5 @@ public class Main {
         }
     }
 
-    /*** method for user registration */
-    static boolean register() {
-        System.out.print("Enter your full name: ");
-        String fname , lname ;
-        fname = scanner.next();
-        lname = scanner.next();
-        String fullname = fname+" "+lname;
-        System.out.print("Enter your username: ");
-        String username = scanner.next();
-        String password=null ,password2 = null;
-        boolean f1 = true;
-        while(f1) {
-            System.out.print("Enter your password: ");
-            password = scanner.next();
-            System.out.print("Re-enter your password: ");
-            password2 = scanner.next();
-            if(password.equals(password2))
-                f1=false;
-            else
-                System.out.println("\nPlease enter same password\n");
 
-        }
-        User user = users.get(username);
-        /*** Same user can not register twice. */
-        if (user != null && user.getUsername().equals(username)) {
-            System.out.println("\nUser already exists.");
-            return false;
-        }
-        user = new User(username, password, fullname, 50);
-        users.put(username, user);
-        System.out.println("\nUser registered successfully.");
-        return true;
-    }
-
-    /*** method for user login */
-    static boolean login() {
-        System.out.print("Enter your username: ");
-        String username = scanner.next();
-        System.out.print("Enter your password: ");
-        String password = scanner.next();
-
-        User user = users.get(username);
-        if (user != null && user.getPassword().equals(password)) {
-            System.out.println("Login successfully.");
-//            System.out.println(user.getFullname());
-//            System.out.println(user.getBalance());
-            active = user;
-            return true;
-        } else {
-            System.out.println("Login failed. Invalid username or password.");
-        }
-        return false;
-    }
-
-    /*** method for purchasing books */
-    static void purchase(BookStore b) {
-        System.out.println("Your wallet balance is : "+active.getBalance());
-        System.out.println("Enter the Book ID for purchasing: ");
-
-        int bid = scanner.nextInt();
-        int result = b.sellBook(bid, active);
-        if(result == 1) {
-            System.out.println("Book Purchased successfully");
-        }
-        else if (result == -1) {
-            System.out.println("Your wallet balance is not sufficient");
-        }
-        else {
-            System.out.println("Book !!Out of stock");
-        }
-    }
-
-    /*** method for resetting password */
-    static boolean resetPassword() {
-        System.out.print("Enter your fullname: ");
-        String fullname = scanner.next();
-        System.out.print("Enter your username: ");
-        String username = scanner.next();
-        User user = users.get(username);
-        /*** Existing user can reset the password. */
-        if (user != null && user.getUsername().equals(username) && user.getFullname().equals(fullname)) {
-            System.out.print("Enter your new password: ");
-            String password = scanner.next();
-            user.setPassword(password);
-            System.out.println("Password reset successfully.");
-            return true;
-        }
-        System.out.println("No such user exists.");
-        return false;
-    }
-
-    //HashMap iterator for debugging...
-    public static void printUser() {
-        Iterator<Entry<String, User>> new_Iterator = users.entrySet().iterator();
-        while (new_Iterator.hasNext()) {
-            Map.Entry<String, User> new_Map = (Map.Entry<String, User>)
-                    new_Iterator.next();
-            User temp = new_Map.getValue();
-            // Displaying HashMap
-            System.out.println(new_Map.getKey()+"  fn:"+temp.getFullname()+" u:"+temp.getUsername()+" p:"+temp.getPassword()+"\n");
-        }
-    }
 }
