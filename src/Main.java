@@ -240,7 +240,7 @@ public class Main {
         return false;
     }
 
-    //HashMap iterator for debugging.
+    //HashMap iterator for debugging...
     public static void printUser() {
         Iterator<Entry<String, User>> new_Iterator = users.entrySet().iterator();
         while (new_Iterator.hasNext()) {
