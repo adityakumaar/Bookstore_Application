@@ -6,7 +6,7 @@ public class PurchaseDetails {
     public String title;
     double price;
 
-    public PurchaseDetails(String username,int bid,String title,double price){
+    public PurchaseDetails(String username, int bid, String title, double price){
         this.username = username;
         this.bid = bid;
         this.title = title;
@@ -16,10 +16,6 @@ public class PurchaseDetails {
         return this.username;
     }
     public void printRecord(){
-        System.out.println(this.bid+" "+this.title+" "+this.price);
-        //System.out.println(this.username+" "+this.bid+" "+this.title+" "+this.price);
+        System.out.println(this.bid + "\t\t" + this.title + "\t" + this.price);
     }
-
-//    public PurchaseDetails() {
-//    }
 }

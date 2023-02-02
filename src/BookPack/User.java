@@ -1,9 +1,8 @@
 package BookPack;
 
-//import java.util.HashMap;
 public class User {
     /**
-     * User class that stores the username and password of a user.
+     * User class that stores the username, password, fullname, balance of a user.
      */
     private String username;
     private String password;
@@ -41,5 +40,4 @@ public class User {
     public void updateBalance(int amt){
         this.balance -= amt;
     }
-
 }

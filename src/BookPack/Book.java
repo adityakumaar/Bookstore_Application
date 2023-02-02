@@ -17,7 +17,6 @@ public class Book  {
     }
 
     public String toString() {
-        //return "Book ID: " + bid + "\nTitle: " + title +  "\nPrice: " + price + "\nQuantity: " + quantity;
         return bid + "               " + title +  "    " + price + "            " + quantity;
     }
 }

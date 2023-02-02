@@ -21,24 +21,19 @@ public class BookStore {
 
     public int sellBook(int bid, User u) {
         for (int i = 0; i < books.size(); i++) {
-            Book tmp = books.get(i);
-            if (tmp.bid == bid) {
-                if (tmp.quantity > 0 ) {
-                    if(!(u.getBalance() >= tmp.price))
+            Book b = books.get(i);
+            if (b.bid == bid) {
+                if (b.quantity > 0 ) {
+                    if(!(u.getBalance() >= b.price))
                         return -1;
 
-                    u.updateBalance((int)tmp.price);
-                    tmp.quantity--;
-
-                    PurchaseDetails pd = new PurchaseDetails(u.getUsername(),tmp.bid,tmp.title,tmp.price);
-
+                    u.updateBalance((int)b.price);
+                    b.quantity--;
+                    PurchaseDetails pd = new PurchaseDetails(u.getUsername(), b.bid, b.title, b.price);
                     purchaseDB.add(pd);
-                    //DisplayPurchaseRecords();
-                    //System.out.println("Book sold!");
                     return 1;
                 }
                 else {
-                   // System.out.println("Book out of stock!");
                     return 0;
                 }
             }
@@ -49,7 +44,6 @@ public class BookStore {
         System.out.println("Book ID         Title           Price           Quantity");
         for (int i = 0; i < books.size(); i++)
             System.out.println(books.get(i));
-        //System.out.println("\n");
     }
 
     public void DisplayPurchaseRecords(){

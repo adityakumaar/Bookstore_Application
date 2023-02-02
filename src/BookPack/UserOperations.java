@@ -12,13 +12,11 @@ public class UserOperations {
 
     /*** method for user registration */
     public static boolean register() {
-        System.out.print("Enter your full name: ");
+        System.out.print("\nEnter your full name: ");
         String fname = null , lname = null;
         fname = scanner.next();
         lname = scanner.next();
-
         String fullname = fname + " " + lname;
-
         System.out.print("Enter your username: ");
         String username = scanner.next();
         String password = null ,password2 = null;
@@ -48,7 +46,7 @@ public class UserOperations {
 
     /*** method for user login */
     public static boolean login() {
-        System.out.print("Enter your username: ");
+        System.out.print("\nEnter your username: ");
         String username = scanner.next();
         System.out.print("Enter your password: ");
         String password = scanner.next();
@@ -56,8 +54,6 @@ public class UserOperations {
         User user = UserOperations.users.get(username);
         if (user != null && user.getPassword().equals(password)) {
             System.out.println("Login successfully.");
-//            System.out.println(user.getFullname());
-//            System.out.println(user.getBalance());
             UserOperations.active = user;
             return true;
         } else {
@@ -69,8 +65,7 @@ public class UserOperations {
     /*** method for purchasing books */
     public static void purchase(BookStore b) {
         System.out.println("Your wallet balance is : "+active.getBalance());
-        System.out.println("Enter the Book ID for purchasing: ");
-
+        System.out.print("\nEnter the Book ID for purchasing: ");
         int bid = scanner.nextInt();
         int result = b.sellBook(bid, UserOperations.active);
         if(result == 1) {
@@ -80,7 +75,7 @@ public class UserOperations {
             System.out.println("Your wallet balance is not sufficient");
         }
         else {
-            System.out.println("Book !!Out of stock");
+            System.out.println("Book is out of stock");
         }
     }
 
@@ -103,7 +98,7 @@ public class UserOperations {
         return false;
     }
 
-    //HashMap iterator for debugging.
+    /*** HashMap iterator for displaying all the users. */
     public static void printUser() {
         Iterator<Map.Entry<String, User>> new_Iterator = UserOperations.users.entrySet().iterator();
         while (new_Iterator.hasNext()) {
@@ -111,7 +106,7 @@ public class UserOperations {
                     new_Iterator.next();
             User temp = new_Map.getValue();
             // Displaying HashMap
-            System.out.println(new_Map.getKey()+"  fn:"+temp.getFullname()+" u:"+temp.getUsername()+" p:"+temp.getPassword()+"\n");
+            System.out.println(new_Map.getKey() + "  fn:" + temp.getFullname() + " u:" + temp.getUsername() + " p:" + temp.getPassword() + "\n");
         }
     }
 }

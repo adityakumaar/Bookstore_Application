@@ -8,16 +8,9 @@
  *              Denish Vaghasiya (202212028)
  */
 
-import java.util.Scanner;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Iterator;
-import java.util.Map.Entry;
-
 import BookPack.Book;
 import BookPack.BookStore;
 import BookPack.PurchaseDetails;
-import BookPack.User;
 import BookPack.UserOperations;
 
 /**
@@ -26,24 +19,16 @@ import BookPack.UserOperations;
  */
 
 public class Main {
-
     /*** HashMap stores all the registered users, where the username is the key and the User object is the value. */
-
-
     public static void main(String[] args) {
         /**
          * a BookStore object is created and some books are added to it.
          * Then the books are displayed, a book is sold, and the books are displayed again to show the updated quantity.
          */
-
         BookStore bookstore = new BookStore();
         bookstore.addBook(new Book(1,"Harry Potter", 20, 3));
         bookstore.addBook(new Book(2,"The Lord of ", 30, 2));
         bookstore.addBook(new Book(3,"The Hobbit  ", 40, 3));
-
-        //bookstore.displayBooks();
-        //bookstore.sellBook("Harry Potter");
-        //bookstore.displayBooks();
 
         /**
          * A menu is displayed to the user asking whether they want to register or login.
@@ -58,7 +43,7 @@ public class Main {
             System.out.println("2. Login");
             System.out.println("3. Forgot password");
             System.out.println("4. Exit");
-            System.out.println("Enter your choice: ");
+            System.out.print("Enter your choice: ");
             int choice = UserOperations.scanner.nextInt();
 
             /** nested switch begins here. */
@@ -74,37 +59,36 @@ public class Main {
                         while(f2){
                             System.out.println("\nWelcome, "+UserOperations.active.getFullname());
                             bookstore.displayBooks();
-                            System.out.println("1. Show Profile");
+                            System.out.println("\n1. Show Profile");
                             System.out.println("2. Purchase");
                             System.out.println("3. Logout");
-                            System.out.println("Enter your choice: ");
+                            System.out.print("Enter your choice: ");
                             choice = UserOperations.scanner.nextInt();
 
                             switch (choice) {
                                 case 1:
-                                    //show_profile();
                                     boolean f3 = true;
                                     boolean flag = false;
                                     while(f3){
                                         System.out.println("\nPurchase History :");
-                                        for(int i=0;i<bookstore.purchaseDB.size();i++){
-                                            PurchaseDetails tmp =  bookstore.purchaseDB.get(i);
-                                            if(tmp.returnUsername().equals(UserOperations.active.getUsername())){
-                                                tmp.printRecord();
+                                        System.out.println("Book ID\tBook Name\t\tPrice");
+                                        for(int i = 0 ; i < bookstore.purchaseDB.size() ; i++){
+                                            PurchaseDetails pd =  bookstore.purchaseDB.get(i);
+                                            if(pd.returnUsername().equals(UserOperations.active.getUsername())){
+                                                pd.printRecord();
                                                 flag = true;
                                             }
                                         }
                                         if(!flag)
                                             System.out.println("No record found");
 
-                                        System.out.println("\nYour wallet balance : "+UserOperations.active.getBalance());
-
+                                        System.out.println("\nYour wallet balance : " + UserOperations.active.getBalance());
 
                                         System.out.println("\n1. Back to catalog");
                                         System.out.println("2. Logout");
-                                        System.out.println("\nEnter your choice: ");
+                                        System.out.print("Enter your choice: ");
                                         choice = UserOperations.scanner.nextInt();
-                                        System.out.println("\n");
+                                        //System.out.println("\n");
                                         switch (choice) {
                                             case 1:
                                                 f3 = false;
@@ -120,6 +104,7 @@ public class Main {
                                     }
                                     break;
                                 case 2:
+                                    System.out.println("\n");
                                     bookstore.displayBooks();
                                     UserOperations.purchase(bookstore);
                                     break;
@@ -147,6 +132,4 @@ public class Main {
             }
         }
     }
-
-
 }
