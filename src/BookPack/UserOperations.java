@@ -82,16 +82,29 @@ public class UserOperations {
     /*** method for resetting password */
     public static boolean resetPassword() {
         System.out.print("Enter your fullname: ");
-        String fullname = scanner.next();
+        String fname = null , lname = null;
+        fname = scanner.next();
+        lname =  scanner.next();
+        String fullname = fname+" "+lname;
         System.out.print("Enter your username: ");
         String username = scanner.next();
         User user = UserOperations.users.get(username);
         /*** Existing user can reset the password. */
         if (user != null && user.getUsername().equals(username) && user.getFullname().equals(fullname)) {
-            System.out.print("Enter your new password: ");
-            String password = scanner.next();
-            user.setPassword(password);
-            System.out.println("Password reset successfully.");
+            boolean flag = true;
+            while(flag) {
+                System.out.print("Enter your new password: ");
+                String password = scanner.next();
+                System.out.print("Re-enter your new password: ");
+                String password2 = scanner.next();
+                if(password.equals(password2)){
+                    flag = false;
+                    System.out.println("Password reset successfully.");
+                    user.setPassword(password);
+                }
+                else
+                    System.out.println("!! Please enter same password");
+            }
             return true;
         }
         System.out.println("No such user exists.");

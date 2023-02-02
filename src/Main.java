@@ -121,9 +121,9 @@ public class Main {
                     }
                     break;
                 case 3:
-                    UserOperations.printUser();
+                    //UserOperations.printUser();
                     UserOperations.resetPassword();
-                    UserOperations.printUser();
+                    //UserOperations.printUser();
                     break;
                 case 4:
                     f1 = false;
