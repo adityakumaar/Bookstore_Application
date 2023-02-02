@@ -88,6 +88,7 @@ public class Main {
                                     boolean flag = false;
                                     while(f3){
                                         System.out.println("\nPurchase History :");
+                                        System.out.println("Bid  BookName  Price");
                                         for(int i=0;i<bookstore.purchaseDB.size();i++){
                                             PurchaseDetails tmp =  bookstore.purchaseDB.get(i);
                                             if(tmp.returnUsername().equals(active.getUsername())){
@@ -95,10 +96,11 @@ public class Main {
                                                 flag = true;
                                             }
                                         }
-                                        System.out.println("\nYour wallet balance : "+active.getBalance());
-
                                         if(!flag)
                                             System.out.println("No record found");
+                                        System.out.println("\nYour wallet balance : "+active.getBalance());
+
+
                                         System.out.println("\n1. Back to catalog");
                                         System.out.println("2. Logout");
                                         System.out.println("\nEnter your choice: ");
@@ -150,7 +152,10 @@ public class Main {
     /*** method for user registration */
     static boolean register() {
         System.out.print("Enter your full name: ");
-        String fullname = scanner.next();
+        String fname , lname ;
+        fname = scanner.next();
+        lname = scanner.next();
+        String fullname = fname+" "+lname;
         System.out.print("Enter your username: ");
         String username = scanner.next();
         String password=null ,password2 = null;
@@ -200,6 +205,7 @@ public class Main {
 
     /*** method for purchasing books */
     static void purchase(BookStore b) {
+        System.out.println("Your wallet balance is : "+active.getBalance());
         System.out.println("Enter the Book ID for purchasing: ");
 
         int bid = scanner.nextInt();

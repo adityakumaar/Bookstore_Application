@@ -16,7 +16,8 @@ public class PurchaseDetails {
         return this.username;
     }
     public void printRecord(){
-        System.out.println(this.username+" "+this.bid+" "+this.title+" "+this.price);
+        System.out.println(this.bid+" "+this.title+" "+this.price);
+        //System.out.println(this.username+" "+this.bid+" "+this.title+" "+this.price);
     }
 
 //    public PurchaseDetails() {
