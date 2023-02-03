@@ -13,10 +13,6 @@ public class UserOperations {
 
     /*** method for user registration */
     public static boolean register() {
-        Console cnsl = System.console();
-        if(cnsl == null) {
-            System.out.println("No console available.");
-        }
 
         System.out.print("\nEnter your full name: ");
         String fname = null, lname = null;
@@ -36,6 +32,10 @@ public class UserOperations {
             password2 = scanner.next();
 
             //uncomment the following lines for running in VS Code
+            //Console cnsl = System.console();
+            //if(cnsl == null) {
+            //    System.out.println("No console available.");
+            //}
             //char[] passwd1 = cnsl.readPassword("Enter your password: ");
             //password1 = new String(passwd1);
             //char[] passwd2 = cnsl.readPassword("Re-enter your password: ");
@@ -63,10 +63,6 @@ public class UserOperations {
 
     /*** method for user login */
     public static boolean login() {
-        Console cnsl = System.console();
-        if(cnsl == null) {
-            System.out.println("No console available.");
-        }
 
         System.out.print("\nEnter your username: ");
         String username = scanner.next();
@@ -76,6 +72,10 @@ public class UserOperations {
         String password = scanner.next();
 
         //uncomment the following lines for running in VS Code
+        //Console cnsl = System.console();
+        //if(cnsl == null) {
+        //    System.out.println("No console available.");
+        //}
         //char[] passwd = cnsl.readPassword("Enter password: ");
         //String password = new String(passwd);
 
@@ -124,11 +124,6 @@ public class UserOperations {
 
             boolean flag = true;
 
-            Console cnsl = System.console();
-            if(cnsl == null) {
-                System.out.println("No console available.");
-            }
-
             while(flag) {
                 //uncomment the following lines for running in intelliJ IDEA
                 System.out.print("Enter your new password: ");
@@ -137,6 +132,10 @@ public class UserOperations {
                 String password2 = scanner.next();
 
                 //uncomment the following lines for running in VS Code
+                //Console cnsl = System.console();
+                //if(cnsl == null) {
+                //    System.out.println("No console available.");
+                //}
                 //char[] passwd1 = cnsl.readPassword("Enter your new password: ");
                 //String password1 = new String(passwd1);
                 //char[] passwd2 = cnsl.readPassword("Re-enter your new password: ");
