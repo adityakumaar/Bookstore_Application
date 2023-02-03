@@ -24,21 +24,21 @@ Developed by:
 ---
 ### Project Architecture
 <h4>All the functionalities are divided and defined in separate classes</h4>
-1. Main.java contains the main menu
-2. Book.java returns all the information about the books
-   1. Book ID
-   2. Title
-   3. Price
-   4. Quantity
-3. BookStore.java stores all the information about the books in an ArrayList.
-   <br>Methods implemented in this file:
-   1. addBook()
-   2. sellBook()
-   3. displayBooks()
-4. PurchaseDetails.java stores and prints all the information that needs to be displayed after the transaction is made.
-   <br>Methods implemented in this file:
-   1. printRecord()
-5. User.java 
+1. Main.java contains the main menu <br>
+2. Book.java returns all the information about the books. <br>
+   1. Book ID <br>
+   2. Title <br>
+   3. Price <br>
+   4. Quantity <br>
+3. BookStore.java stores all the information about the books in an ArrayList. <br>
+   <br>Methods implemented in this file:<br>
+   1. addBook() <br>
+   2. sellBook() <br>
+   3. displayBooks() <br>
+4. PurchaseDetails.java stores and prints all the information that needs to be displayed after the transaction is made. <br>
+   <br>Methods implemented in this file: <br>
+   1. printRecord() <br>
+5. User.java <br>
 
 
 
