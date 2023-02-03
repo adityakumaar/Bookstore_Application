@@ -12,15 +12,32 @@ public class UserOperations {
     public static User active;
 
     /*** method for user registration */
-    public static boolean register() {
+    public static void register() {
 
         System.out.print("\nEnter your full name: ");
         String fname = null, lname = null;
         fname = scanner.next();
         lname = scanner.next();
         String fullname = fname + " " + lname;
+
         System.out.print("Enter your username: ");
         String username = scanner.next();
+
+        User user = UserOperations.users.get(username);
+
+        if(user != null && user.getUsername().equals(username)){
+            boolean flag = true;
+            while(flag) {
+                    System.out.println("\nUser already exists.");
+                    System.out.print("Enter your username: ");
+                    username = scanner.next();
+
+                    if(!user.getUsername().equals(username))
+                        flag = false;
+                }
+            }
+
+
         String password1 = null ,password2 = null;
         boolean f1 = true;
 
@@ -48,17 +65,10 @@ public class UserOperations {
 
         }
 
-        User user = UserOperations.users.get(username);
-        /*** Same user can not register twice. */
-        if (user != null && user.getUsername().equals(username)) {
-            System.out.println("\nUser already exists.");
-            return false;
-        }
-
         user = new User(username, password1, fullname, 50);
         UserOperations.users.put(username, user);
         System.out.println("\nUser registered successfully.");
-        return true;
+
     }
 
     /*** method for user login */

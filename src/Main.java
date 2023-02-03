@@ -50,10 +50,8 @@ public class Main {
             /** nested switch begins here. */
             switch (choice) {
                 case 1:
-                    if (UserOperations.register())
-                        break;
-                    else
-                        continue;
+                    UserOperations.register();
+                    break;
                 case 2:
                     if (UserOperations.login()) {
                         boolean f2 = true;
