@@ -1,6 +1,10 @@
 package BookPack;
 
 public class PurchaseDetails {
+    /**
+     * PurchaseDetails class stores the username, bid, title, price of the buyer.
+     */
+
     String username;
     int bid;
     public String title;
@@ -12,9 +16,11 @@ public class PurchaseDetails {
         this.title = title;
         this.price = price;
     }
+
     public String returnUsername(){
         return this.username;
     }
+
     public void printRecord(){
         System.out.println(this.bid + "\t\t" + this.title + "\t" + this.price);
     }

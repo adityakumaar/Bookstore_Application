@@ -14,12 +14,12 @@ import BookPack.PurchaseDetails;
 import BookPack.UserOperations;
 
 /**
- * Created a separate package for classes Book, Bookstore, and User and imported the package in Main.java file
+ * Created a separate package for classes Book, Bookstore, User, PurchaseDetails, UserOperations and imported the package in Main.java file
  * Package name: BookPack
  */
 
 public class Main {
-    /*** HashMap stores all the registered users, where the username is the key and the User object is the value. */
+
     public static void main(String[] args) {
         /**
          * a BookStore object is created and some books are added to it.
@@ -29,6 +29,7 @@ public class Main {
         bookstore.addBook(new Book(1,"Harry Potter", 20, 3));
         bookstore.addBook(new Book(2,"The Lord of ", 30, 2));
         bookstore.addBook(new Book(3,"The Hobbit  ", 40, 3));
+        //bookstore.addBook(new Book(3,"Jack Ryan   ", 40, 3));
 
         /**
          * A menu is displayed to the user asking whether they want to register or login.
@@ -90,7 +91,6 @@ public class Main {
                                         System.out.println("2. Logout");
                                         System.out.print("Enter your choice: ");
                                         choice = UserOperations.scanner.nextInt();
-                                        //System.out.println("\n");
                                         switch (choice) {
                                             case 1:
                                                 f3 = false;

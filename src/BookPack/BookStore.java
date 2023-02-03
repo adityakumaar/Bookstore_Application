@@ -15,10 +15,12 @@ public class BookStore {
         purchaseDB = new ArrayList<PurchaseDetails>();
     }
 
+    /*** This method populates the Bookstore inventory. */
     public void addBook(Book book) {
         books.add(book);
     }
 
+    /*** This method is used for fetching book details and assigning the book to the user */
     public int sellBook(int bid, User u) {
         for (int i = 0; i < books.size(); i++) {
             Book b = books.get(i);
@@ -40,6 +42,8 @@ public class BookStore {
         }
         return 0;
     }
+
+    /*** This method displays all the books available in the inventory. */
     public void displayBooks() {
         System.out.println("------------------ List of Books -----------------------");
         System.out.println("Book ID         Title           Price           Quantity");
@@ -47,6 +51,7 @@ public class BookStore {
             System.out.println(books.get(i));
     }
 
+    /*** Method for displaying all the purchases. (for debugging purpose only.) */
     public void DisplayPurchaseRecords(){
         for(int i=0;i<purchaseDB.size();i++){
             purchaseDB.get(i).printRecord();

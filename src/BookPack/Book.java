@@ -9,7 +9,7 @@ public class Book  {
     double price;
     public int quantity;
 
-    public Book(int bid,String title, double price, int quantity) {
+    public Book(int bid, String title, double price, int quantity) {
         this.bid = bid;
         this.title = title;
         this.price = price;
