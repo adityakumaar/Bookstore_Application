@@ -15,23 +15,37 @@ public class BookStore {
         purchaseDB = new ArrayList<PurchaseDetails>();
     }
 
-    /*** This method populates the Bookstore inventory. */
+    /**
+     * This method populates the Bookstore inventory.
+     * It is called from the Main method whenever the program is initiated.
+     */
     public void addBook(Book book) {
         books.add(book);
     }
 
-    /*** This method is used for fetching book details and assigning the book to the user */
+    /**
+     *  This method is used for fetching book details and assigning the book to the user
+     *  This method takes the book id and the current user object as input
+     *  This method returns -1 when the purchase is unsuccessful, 1 is the purchase is successful, 0 otherwise
+     */
     public int sellBook(int bid, User u) {
         for (int i = 0; i < books.size(); i++) {
+
+            // It calls the ArrayList books and tries to fetch the entries that matches the book id
             Book b = books.get(i);
             if (b.bid == bid) {
+                // If a match is found and the quantity is more than 0, it checks if the user has sufficient balance to make the transaction
                 if (b.quantity > 0 ) {
                     if(!(u.getBalance() >= b.price))
                         return -1;
 
+                    // If the transaction is successful, the user's balance is updated by subtracting the book's price
                     u.updateBalance((int)b.price);
+                    // Quantity of the book is reduced by 1
                     b.quantity--;
+                    // A new object is made for the PurchaseDetails for the current user
                     PurchaseDetails pd = new PurchaseDetails(u.getUsername(), b.bid, b.title, b.price);
+                    // This object is now inserted into the PurchaseDB ArrayList
                     purchaseDB.add(pd);
                     return 1;
                 }
@@ -47,7 +61,9 @@ public class BookStore {
     public void displayBooks() {
         System.out.println("------------------ List of Books -----------------------");
         System.out.println("Book ID         Title           Price           Quantity");
-        for (int i = 0; i < books.size(); i++)
+
+        // It iterates through the books ArrayList and display all the books
+        for (int i = 0 ; i < books.size() ; i++)
             System.out.println(books.get(i));
     }
 
