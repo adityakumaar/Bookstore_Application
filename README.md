@@ -44,6 +44,7 @@ Developed by:
    2. login() <br>
    3. purchase() <br>
    4. resetPassword <br>
+   5. logout() <br>
 
 ---
 ### Libraries
