@@ -88,7 +88,7 @@ public class Main {
                                         }
                                         // The following if block handles the case when there are no books purchased by the current user
                                         if(!flag)
-                                            System.out.println("No record found");
+                                            System.out.println("\nNo record found");
 
                                         // The wallet balance of the current user is displayed
                                         System.out.println("\nYour wallet balance : " + UserOperations.active.getBalance());
@@ -103,11 +103,14 @@ public class Main {
                                                 f3 = false;
                                                 break;
                                             case 2:
-                                                f3 = false;
-                                                f2 = false;
+                                                if(UserOperations.logout()) {
+                                                    System.out.println("\nUser logged out successfully.");
+                                                    f3 = false;
+                                                    f2 = false;
+                                                }
                                                 break;
                                             default:
-                                                System.out.println("Invalid choice.");
+                                                System.out.println("\nInvalid choice.");
                                                 break;
                                         }
                                     }
@@ -122,10 +125,13 @@ public class Main {
                                     UserOperations.purchase(bookstore);
                                     break;
                                 case 3:
-                                    f2 = false;
+                                    if(UserOperations.logout()) {
+                                        System.out.println("\nUser logged out successfully.");
+                                        f2 = false;
+                                    }
                                     break;
                                 default:
-                                    System.out.println("Invalid choice.");
+                                    System.out.println("\nInvalid choice.");
                                     break;
                             }
                         }
@@ -138,9 +144,10 @@ public class Main {
                     break;
                 case 4:
                     f1 = false;
+                    System.out.println("\nProgram exit successful.");
                     break;
                 default:
-                    System.out.println("Invalid choice.");
+                    System.out.println("\nInvalid choice.");
                     break;
             }
         }

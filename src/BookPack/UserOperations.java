@@ -174,6 +174,12 @@ public class UserOperations {
         return false;
     }
 
+    /** This method sets the current user object as null and logs the user out */
+    public static boolean logout() {
+        UserOperations.active = null;
+        return true;
+    }
+
     /*** HashMap iterator for displaying all the users. (for debugging purpose only) */
     public static void printUser() {
         Iterator<Map.Entry<String, User>> new_Iterator = UserOperations.users.entrySet().iterator();
