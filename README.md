@@ -6,7 +6,7 @@ Developed by:
     <li>Aditya Kumar (202212046)</li>
     <li>Harsh Mangroliya (202212084)</li>
     <li>Gaurav Bardia (202212069)</li>
-    <li>Denish Vaghasiya (202212028)</li>
+    <li>Denish Vaghasia (202212028)</li>
 </ul>
 
 ---
